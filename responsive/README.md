@@ -1,5 +1,5 @@
 #comp20-proche
-1. As far as I'm aware, everything has been correctly implemented. I covered the basics (i.e. correct GitHub repo name, exact file names, etc.), I created the README.md file, I completed the responsive.css style sheet that was able to use media queries to display different images depending on the size of the browser screen, and finally, I didn't modify the HTML provided for me nor did I use a different image.
+1. As far as I'm aware, everything has been correctly implemented. I covered the basics (i.e. correct GitHub repo name, exact file names, etc.), I created the README.md file, I completed the responsive.css style sheet which used media queries to display different images depending on the size of the browser screen, and finally, I didn't modify the HTML provided for me nor did I use a different image.
 
 2. I worked on this lab by myself.
 
