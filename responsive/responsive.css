@@ -1,39 +1,104 @@
 /*responsive css file*/
-.software{
-	background-color: lightgreen;
+.software{	
 	width: 128px;
 	height: 240px;
-	background:url(responsive/software.png) 0 0px;
-}
-
-
-.software2{
-	background-color: lightgreen;
-	width: 128px;
-	height: 240px;
-	background:url(responsive/software.png) 0 -240px;
-}
-
-.software3{
-	background-color: lightgreen;
-	width: 128px;
-	height: 240px;
-	background:url(responsive/software.png) 128 0px;
-}
-
-.software4{
-	background-color: lightgreen;
-	width: 128px;
-	height: 240px;
-	background:url(responsive/software.png) 128 -240px;
 }
 /*Non-retinal browser screen*/
+/*TL*/
 @media screen 
 	and (min-width: 1200px) 
 	and (-webkit-min-device-pixel-ratio: 1){
-
-		.software{
-			width: 100%;
-			height: 50%;
-		}
+	.software{
+		background:url("../responsive/software.png") 0 0px;
+		background-color: lightblue;
+	}	
+}
+/*TL2*/
+@media screen 
+	and (min-width: 1100px) 
+	and (max-width: 1200px) 
+	and (-webkit-min-device-pixel-ratio: 1){
+	.software{
+		background:url("../responsive/software.png") -128px 0px;
+		background-color: lightgrey;
+	}
+}
+/*TL3*/
+@media screen 
+	and (min-width: 1000px) 
+	and (max-width: 1100px)
+	and (-webkit-min-device-pixel-ratio: 1){
+	.software{
+		background:url("../responsive/software.png") -256px 0px;
+		background-color: lightgrey;
+	}
+}
+/*TL4*/
+@media screen 
+	and (min-width: 900px) 
+	and (max-width: 1000px)
+	and (-webkit-min-device-pixel-ratio: 1){
+	.software{
+		background:url("../responsive/software.png") -384px 0px;
+		background-color: lightgrey;
+	}
+}
+/*TL5*/
+@media screen 
+	and (min-width: 800px) 
+	and (max-width: 900px)
+	and (-webkit-min-device-pixel-ratio: 1){
+	.software{
+		background:url("../responsive/software.png") -512px 0px;
+		background-color: lightgrey;
+	}
+}
+/*T2L*/
+@media screen 
+	and (min-width: 700px) 
+	and (max-width: 800px)
+	and (-webkit-min-device-pixel-ratio: 1){
+	.software{
+		background: url("../responsive/software.png") 0 -240px;
+		background-color: lightgrey;
+	}
+}
+/*T2L2*/
+@media screen 
+	and (min-width: 600px) 
+	and (max-width: 700px)
+	and (-webkit-min-device-pixel-ratio: 1){
+	.software{
+		background: url("../responsive/software.png") -128px -240px;
+		background-color: lightgrey;
+	}
+}
+/*T2L3*/
+@media screen 
+	and (min-width: 500px) 
+	and (max-width: 600px)
+	and (-webkit-min-device-pixel-ratio: 1){
+	.software{
+		background: url("../responsive/software.png") -256px -240px;
+		background-color: lightgrey;
+	}
+}
+/*T2L4*/
+@media screen 
+	and (min-width: 400px) 
+	and (max-width: 500px)
+	and (-webkit-min-device-pixel-ratio: 1){
+	.software{
+		background: url("../responsive/software.png") -384px -240px;
+		background-color: lightgrey;
+	}
+}
+/*T2L5*/
+@media screen 
+	and (max-width: 400px)
+	and (-webkit-min-device-pixel-ratio: 1){
+	.software{
+		background: url("../responsive/software.png") -512px -240px;
+		background-color: lightgrey;
+	}
 }
