@@ -14,7 +14,7 @@
 <div id="lyrics"></div>
 
 <script>
-	// Complete this section and create a CSS file named style.css
+	//Complete this section and create a CSS file named style.css
 		var video = document.getElementById("butwehavethepower");
 		var lyrics = document.getElementById("lyrics");
 
@@ -22,20 +22,51 @@
 
 		video.addEventListener("timeupdate", function(){
 			console.log("Inside function");
+			//section one of lyrics
+
 			if(video.currentTime < 5){
 				lyrics.innerHTML = "<h3>first section of the lyrics</h3>";
 			}
-			else if(video.currentTime > 5 && video.currentTime < 7){
+			else if(video.currentTime > 6 && video.currentTime < 8){
 				lyrics.innerHTML = "<h3>Come gather round, children,</h3>";
 			}
 			else if(video.currentTime > 8 && video.currentTime < 10){
 				lyrics.innerHTML = "<h2>It's high time ye learned</h2>";
 			}
-			else if(video.currentTime > 11 && video.currentTime < 12){
+			else if(video.currentTime > 10 && video.currentTime < 13){
 				lyrics.innerHTML = "<h3>'Bout a hero named Homer</h3>";
 			}
 			else if(video.currentTime > 13 && video.currentTime < 16){
 				lyrics.innerHTML = "<h2>And a devil named Burns.</h2>";
+			}
+
+			//section two of lyrics
+			else if(video.currentTime > 17 && video.currentTime < 19){
+				lyrics.innerHTML = "<h2>We'll march 'till we drop</h2>";
+			}
+			else if(video.currentTime > 19 && video.currentTime < 21){
+				lyrics.innerHTML = "<h2>The girls and the fellas.</h2>";
+			}
+			else if(video.currentTime > 21 && video.currentTime < 23){
+				lyrics.innerHTML = "<h2>We'll fight 'till the death</h2>";
+			}
+			else if(video.currentTime > 23 && video.currentTime < 27){
+				lyrics.innerHTML = "<h2>Or else fold like umbrellas.</h2>";
+			}
+
+			//section three
+			else if(video.currentTime > 38 && video.currentTime < 40){
+				lyrics.innerHTML = "<h2>So we'll march day and night</h2>";
+			}
+			else if(video.currentTime > 40 && video.currentTime < 43){
+				lyrics.innerHTML = "<h2>By the big cooling tower.</h2>";
+			}
+			else if(video.currentTime > 43 && video.currentTime < 45){
+				lyrics.innerHTML = "<h2>They have the plant</h2>";
+			}
+
+			else if(video.currentTime > 45 && video.currentTime < 49){
+				lyrics.innerHTML = "<h2>But we have the power.</h2>";
 			}
 			else{
 				lyrics.innerHTML = " ";
