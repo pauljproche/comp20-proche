@@ -15,6 +15,22 @@
 
 <script>
 	// Complete this section and create a CSS file named style.css
+		var video = document.getElementById("butwehavethepower");
+		var lyrics = document.getElementById("lyrics");
+
+	//if(video){
+
+		video.addEventListener("timeupdate", function(){
+			console.log("Inside function");
+			if(video.currentTime < 4){
+				lyrics.innerHTML = "<h3>first section of the lyrics</h3>";
+			}
+			else{
+				lyrics.innerHTML = " ";
+			}
+		}, false);
+	//}
+	
 </script>
 </body>
 </html>	
