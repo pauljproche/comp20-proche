@@ -3,11 +3,14 @@
 	text-align: center;
 	color: lightblue;
 	font-size: 14px;
-	padding: 6px;
 	font-family: serif;
 }
 
 #id{
 	text-align: center;
 	font-family: verdana;
+}
+
+#butwehavethepower{
+	margin: auto;
 }
