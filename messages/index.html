@@ -6,28 +6,14 @@
   <meta charset="utf-8" />
   <title>Messages</title>
   <script>
-    function parse() {
+    function loadMessages() {
       jsonData = '[{"id":1,"content":"Do you really want to hurt me?","username":"Boy"},{"id":2,"content":"Do you really want to make me cry?","username":"George"}]';
       // Your code here......
-      //var obj = JSON.parse(jsonData); <-- It's an array, can't use this
-      //document.getElementById("messages").innerHTML = obj.id + ", " + obj.content + ", " + obj.username;
-    
-    	var string = JSON.stringify(jsonData);
-    	var objects = JSON.parse(jsonData);
-    	objects.forEach(function(key, index){
-    		console.log(key.id);
-    		console.log(key.content);
-    		console.log(key.username);
-
-    		document.getElementById("messages").innerHTML = key.id + ", " + key.content + ", " + key.username;
-
-    	});
-    	//document.getElementById("messages").innerHTML = obj.id + ", " + obj.content + ", " + obj.username;
     }
   </script>
 </head>
 
-<body onload="parse()">
+<body onload="loadMessages()">
   <h1>Messages</h1>
   <div id="messages"></div>
 </body>
