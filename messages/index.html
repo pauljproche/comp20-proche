@@ -11,9 +11,6 @@
       var json_obj = JSON.parse(jsonData);
     	for (var i=0; i < json_obj.length; i++){
     		var counter = json_obj[i];
-    		console.log(counter.id);
-    		console.log(counter.content);
-    		console.log(counter.username);
        		document.getElementById("messages").innerHTML += counter.content + " " + counter.username + "<br \>";
     	}
     }
