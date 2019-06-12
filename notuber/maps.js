@@ -1,9 +1,9 @@
 //notuber js file
-//Copied & pasted constructor of Map object
-var map;
-function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -34.397, lng: 150.644},
-    zoom: 8
-  });
+function initMap() { // now it IS a function and it is in global
+   var map = new google.maps.Map(document.getElementById('map'), {
+  	center: {lat: 42.352271, lng: -71.05524200000001},
+   	zoom: 8
+   });
 }
+
+
