@@ -1,14 +1,10 @@
 //notuber js file
 function initMap() { 
-   //var myLatLng1 = {lat: 42.3453, lng: 	-71.0464};
-   
-
    var map = new google.maps.Map(document.getElementById('map'), {
   	center: {lat: 42.352271, lng: -71.05524200000001},
    	zoom: 14
    });
 
-   
    setMarker(map);
 }
 var locations = [
