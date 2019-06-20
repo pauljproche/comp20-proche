@@ -1,8 +1,7 @@
 //notuber js file
 
-//declaring map in global scope for setMap to work
+//declaring global scope variables
 var map;
-
 //Default lat and long
 var my_lat = -99999;
 var my_lng = -99999;
@@ -16,12 +15,25 @@ var locations = [
     ['VMerzMH8', 42.3542, -71.0704, 6],
 ];
 
+var http = new XMLHttpRequest();
+var url = 'https://hans-moleman.herokuapp.com/rides';
+var params = "username=prOuKReR&lat=" + my_lat + "&lng=" + my_lng;
+http.open('POST', url, true);
 
+//Send the proper header information along with the request
+http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+http.onreadystatechange = function() {//Call a function when the state changes.
+    if(http.readyState == 4 && http.status == 200) {
+        alert(http.responseText);
+    }
+}
+http.send(params);
 
 function initMap() { 
    map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 42.352271, lng: -71.05524200000001},
-    zoom: 14
+    zoom: 11
    });
 
    setMarker(map);
@@ -58,15 +70,11 @@ function getLocation() {
 //Upon determining my geoloc, placed a marker of where I am on the map
 function renderMap(){
   var me = new google.maps.LatLng(my_lat, my_lng);
-
   // Update map and go there...
-        //map.panTo(me);
-        
         // Create a marker
         marker = new google.maps.Marker({
           position: me,
           title: "Here I Am!"
         });
-        marker.setMap(map);
-          
+        marker.setMap(map);      
 }
