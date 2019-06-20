@@ -2,7 +2,7 @@
 
 //declaring map in global scope for setMap to work
 var map;
-
+var marker;
 //Default lat and long
 var my_lat = -99999;
 var my_lng = -99999;
@@ -15,13 +15,14 @@ var locations = [
     ['uf5ZrXYw', 42.3663, -71.0544, 5],
     ['VMerzMH8', 42.3542, -71.0704, 6],
 ];
-
+//Initialize infoWindow
+//var infowindow = new google.maps.InfoWindow();
 
 
 function initMap() { 
    map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 42.352271, lng: -71.05524200000001},
-    zoom: 14
+    zoom: 11
    });
 
    setMarker(map);
@@ -60,7 +61,7 @@ function renderMap(){
   var me = new google.maps.LatLng(my_lat, my_lng);
 
   // Update map and go there...
-        //map.panTo(me);
+        map.panTo(me);
         
         // Create a marker
         marker = new google.maps.Marker({
@@ -68,5 +69,11 @@ function renderMap(){
           title: "Here I Am!"
         });
         marker.setMap(map);
+
+        // Open info window on click of marker
+        //google.maps.event.addListener(marker, 'click', function() {
+        //  infowindow.setContent(marker.title);
+        //  infowindow.open(map, marker);
+        //});
           
 }
