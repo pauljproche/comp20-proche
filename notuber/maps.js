@@ -6,7 +6,9 @@ function initMap() {
    });
 
    setMarker(map);
+   getLocation();
 }
+
 var locations = [
     ['mXfkjrFw', 42.3453, -71.0464, 1],
     ['nZXB8ZHz', 42.3662, -71.0621, 2],
@@ -15,7 +17,11 @@ var locations = [
     ['uf5ZrXYw', 42.3663, -71.0544, 5],
     ['VMerzMH8', 42.3542, -71.0704, 6],
 ];
+//Default lat and long
+var lat = -99999;
+var lng = -99999;
 
+  
 function setMarker(map){
 var marker, i;
 var image = {
@@ -30,3 +36,23 @@ var image = {
     }
 }
 
+
+
+
+//Get's current location using geolocation
+function getLocation() {
+    console.log("I am here 1");
+    navigator.geolocation.getCurrentPosition(function(somePos) {
+      console.log("I am here 2");
+      lat = somePos.coords.latitude;
+      lng = somePos.coords.longitude;
+      printLocation();
+    });
+    console.log("I am here 3");
+}
+//Prints current location 
+function printLocation() {
+    console.log("I am here 4");
+    elem = document.getElementById("map");
+    elem.innerHTML = '<p class="fun">' + lat + ", " + lng + "</p>";
+  }
