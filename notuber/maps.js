@@ -46,7 +46,7 @@ function getLocation() {
 //Renders the map on load from getLocation()
 function renderMap(my_lat, my_lng, contentString){
   var me = new google.maps.LatLng(my_lat, my_lng);
-  var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+  var image = 'icons8-marker-64.png';
       //console.log("my lat" + my_lat);
       //console.log("my lng" + my_lng);
   // Update map and go there...        
@@ -130,6 +130,7 @@ var image = {
         icon: image
       });
     }
+
 }
 
 function find_shortest_path(i, counter){
@@ -172,6 +173,5 @@ function createPath(){
     strokeWeight: 2
   });
   travelPath.setMap(map);                         
-  
 }
 //CHEERIOS
