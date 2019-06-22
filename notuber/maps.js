@@ -4,12 +4,16 @@ var map;
 var marker;
 var my_lat = -99999;
 var my_lng = -99999;
-var x,y;
+var x, y;
 //var infowindow = new google.maps.InfoWindow();
 var locations = [];
-var distance = [];
-var shortest;
-var dist, short_dist = 100;
+var pathCoordinates = [];
+var shortest, shortest_id;
+var dist = 100;
+var short_dist = 100;
+var contentString = "tttt";
+//var infowindow = new google.maps.InfoWindow();
+//var xmlhttp = new XMLHttpRequest();
 function initMap() { 
    map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 42.352271, lng: -71.05524200000001},
@@ -20,7 +24,8 @@ function initMap() {
 
   
   execute_http_post(); //DONE //2. Then request the JSON data and then parse it (i.e. Saving the lat & lng of each car)
-  getLocation();       //DONE //1. First get my current location and display marker & infoWindow via renderMap()
+  //getLocation();       //DONE //1. First get my current location and display marker & infoWindow via renderMap()
+  //renderMap();
   //compute_distance();  //DONE //4. Finally, Computes distance between me and INSERT_CAR to find shortest path
   //find_shortest_path();
                        //5. Display polyline between me and closest marker
@@ -28,18 +33,29 @@ function initMap() {
 
                        //DISPLAY PATH
                        //INFOWINDOW SHOWING SHORTEST PATH
-  setMarker(map);      //DONE //3. Next, use the JSON data to assign location for cars (i.e. lat, lng)
-                        
+  //setMarker(map);      //DONE //3. Next, use the JSON data to assign location for cars (i.e. lat, lng)
+  
+  
   
 }
 
+/*var infoWindowContent = [
+  ['<div class="info_content">' +
+        '<h3>Brooklyn Museum</h3>' +
+        '<p>The Brooklyn Museum is an art museum located in the New York City borough of Brooklyn.</p>' + '</div>'],
+  ['<div class="info_content">' +
+        '<h3>NEWYORK Museum</h3>' +
+        '<p>The Brooklyn Museum is an art museum located in the New York City borough of Brooklyn.</p>' + '</div>'],
+]*/
 //Get's current location using geolocation
 function getLocation() {
+
   if(navigator.geolocation){
     navigator.geolocation.getCurrentPosition(function(somePos) {
       my_lat = somePos.coords.latitude;
       my_lng = somePos.coords.longitude;
-      renderMap();
+      console.log(contentString);
+      renderMap(my_lat, my_lng, contentString);
     });
   } else {
     alert("Cannot access Geolocation...");
@@ -47,22 +63,27 @@ function getLocation() {
 }
 
 //Renders the map on load from getLocation()
-function renderMap(){
+function renderMap(my_lat, my_lng, contentString){
+  console.log(contentString);
   var me = new google.maps.LatLng(my_lat, my_lng);
   // Update map and go there...        
         // Create a marker
         marker = new google.maps.Marker({
           position: me,
-          title: "Here I Am!"
-
+          //title: "Here I Am!"
+          title: shortest_id, 
+          content: contentString
         });
         marker.setMap(map);
-
+        console.log("HERE");
         var infowindow = new google.maps.InfoWindow();
-        // Open info window on click of marker
+        // Open info window on click of markerg 0.   
         google.maps.event.addListener(marker, 'click', function() {
-          infowindow.setContent(marker.title);
+          //infowindow.setContent(marker.title);
+          console.log(contentString);
+          infowindow.setContent(contentStringAsString);
           infowindow.open(map, marker);
+
         });
 }
 
@@ -77,8 +98,10 @@ function execute_http_post(){
 
   http.open('POST', url, true);
   http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+  //http.onreadystatechange=myCallBack;
   http.onreadystatechange = function() {
     if(http.readyState == 4 && http.status == 200) {
+      
         //SECTION THAT PARSES RECEIVED JSON DATA
         console.log(http.responseText);
         var jsonData = http.responseText; 
@@ -91,18 +114,30 @@ function execute_http_post(){
           the_car_lat = counter.lat;
           the_car_lng = counter.lng;
 
-          locations.push([the_car_id, the_car_lat, the_car_lng, i]);  
-          //console.log(locations[i]); 
-          shortest = find_shortest_path(i);
+          locations.push([the_car_id, the_car_lat, the_car_lng, i]);
+
+          shortest = find_shortest_path(i, counter);
+          
+          console.log(shortest);
+          //getLocation();
 
         }
         //console.log(shortest);
+        console.log(contentString);
+        getLocation();
         setMarker(map);
+        createPath();
     }
   }
   http.send(params);
+  //getLocation();
 }
 
+/*function myCallBack(){
+  if(xmlhttp.readyState==4 && xml.status==200){
+    console.log(http.responseText);
+  }
+}*/
 //Set MARKERS for all the available cars
 function setMarker(map){
 var i;
@@ -118,8 +153,7 @@ var image = {
     }
 }
 
-function find_shortest_path(i){
-  var c_lat, c_lng;
+function find_shortest_path(i, counter){
   c_lat = locations[i][1];
   c_lng = locations[i][2];
   //call helper function
@@ -128,25 +162,48 @@ function find_shortest_path(i){
   if(dist < short_dist){
     short_dist = dist;
     console.log(short_dist);
+    console.log(counter._id);
+    shortest_id = counter._id;
+    pathCoordinates.push({lat: c_lat, lng: c_lng});
+    contentString = [shortest_id, c_lat, c_lng];
+    contentStringAsString = contentString.join(', '); 
+    console.log(contentString);
   }
 }
 
 //Calculates the distance between point A and point B
-//Param: shares the lat & lng of a TEST car
+//Param: takes the lat & lng of the current marker
 function compute_distance(x, y){  
 
   var a = new google.maps.LatLng(x, y);
   var b = new google.maps.LatLng(42.3959, -71.1787);
-  //var final_distance;
 
   var between = google.maps.geometry.spherical.computeDistanceBetween(a,b);
   between = between*0.000621371192;
 
-  //final_distance = between;
-  //distance.push(final_distance);
-
   return between;
 }
 
+function createPath(){
+  pathCoordinates.push({lat: 42.3959, lng: -71.1787});
+  console.log("HERRYA");
+  console.log(pathCoordinates);
+  console.log(pathCoordinates.length)-2;
 
-
+  num_of_path_ele = pathCoordinates.length-3;
+  for(var i=0; i<=num_of_path_ele; i++){   
+       console.log("i=" + i);
+       pathCoordinates.shift();
+       console.log(pathCoordinates.length)-2;
+  }
+  console.log(pathCoordinates);
+  var travelPath = new google.maps.Polyline({
+    path: pathCoordinates,
+    geodesic: true,
+    strokeOpacity: 1.0,
+    strokeWeight: 2
+  });
+  travelPath.setMap(map);                         
+  
+}
+//CHEERIOS
