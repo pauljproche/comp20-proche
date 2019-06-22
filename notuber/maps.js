@@ -152,14 +152,14 @@ function find_shortest_path(i, counter){
 //Param: takes the lat & lng of the current marker
 function compute_distance(x, y){  
   var a = new google.maps.LatLng(x, y);
-  var b = new google.maps.LatLng(42.3959, -71.1787);
+  var b = new google.maps.LatLng(42.404907699999995, -71.1823618);
   var between = google.maps.geometry.spherical.computeDistanceBetween(a,b);
   between = between*0.000621371192;
   return between;
 }
 
 function createPath(){
-  pathCoordinates.push({lat: 42.3959, lng: -71.1787});
+  pathCoordinates.push({lat: 42.404907699999995, lng:  -71.1823618});
 
   num_of_path_ele = pathCoordinates.length-3;
   for(var i=0; i<=num_of_path_ele; i++){   
