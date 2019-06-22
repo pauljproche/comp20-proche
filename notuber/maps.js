@@ -2,10 +2,10 @@
 
 //declaring map in global scope for setMap to work
 var map;
-
-//Default lat and long
+var marker;
 var my_lat = -99999;
 var my_lng = -99999;
+//var infowindow = new google.maps.InfoWindow();
 //Default locations of cars
 var locations = [
     ['mXfkjrFw', 42.3453, -71.0464, 1],
@@ -16,20 +16,22 @@ var locations = [
     ['VMerzMH8', 42.3542, -71.0704, 6],
 ];
 
-
-
 function initMap() { 
    map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 42.352271, lng: -71.05524200000001},
-    zoom: 14
-   });
+    zoom: 11,
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
 
-   setMarker(map);
-   getLocation();
+  setMarker(map);
+  getLocation();
+  execute_http_post();
+  compute_distance();
 }
 
+
 function setMarker(map){
-var marker, i;
+var i;
 var image = {
 	url: 'https://tuftsdev.github.io/WebProgramming/assignments/summer2019/car.png'
 };
@@ -55,7 +57,6 @@ function getLocation() {
   }
 }
 
-//Upon determining my geoloc, placed a marker of where I am on the map
 function renderMap(){
   var me = new google.maps.LatLng(my_lat, my_lng);
 
@@ -68,5 +69,39 @@ function renderMap(){
           title: "Here I Am!"
         });
         marker.setMap(map);
+
+        var infowindow = new google.maps.InfoWindow();
+        // Open info window on click of marker
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.setContent(marker.title);
+          infowindow.open(map, marker);
+        });
           
+}
+
+function execute_http_post(){
+  var http = new XMLHttpRequest();
+  var url = 'https://hans-moleman.herokuapp.com/rides';
+  //var params = "username=prOuKReR&lat=" + my_lat   + "&lng=" + my_lng;
+  //var params = "username=IZ1sLGwg&lat=" + latitude + "&lng=" + longitiude;
+  var params = "username=prOuKReR&lat=10&lng=10";
+  http.open('POST', url, true);
+
+  http.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+  http.onreadystatechange = function() {
+   if(http.readyState == 4 && http.status == 200) {
+        alert(http.responseText);
+    }
+  }
+  http.send(params);
+}
+
+function compute_distance(){
+  //key a: mXfkjrFw
+  //me as b
+  var a = new google.maps.LatLng(42.3453, -71.0464);
+  var b = new google.maps.LatLng(42.3959, -71.1787);
+  console.log(google.maps.geometry.spherical.computeDistanceBetween(a,b));
+  alert(google.maps.geometry.spherical.computeDistanceBetween(a,b));
 }
