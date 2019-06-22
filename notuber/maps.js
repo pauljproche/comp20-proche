@@ -39,14 +39,6 @@ function initMap() {
   
 }
 
-/*var infoWindowContent = [
-  ['<div class="info_content">' +
-        '<h3>Brooklyn Museum</h3>' +
-        '<p>The Brooklyn Museum is an art museum located in the New York City borough of Brooklyn.</p>' + '</div>'],
-  ['<div class="info_content">' +
-        '<h3>NEWYORK Museum</h3>' +
-        '<p>The Brooklyn Museum is an art museum located in the New York City borough of Brooklyn.</p>' + '</div>'],
-]*/
 //Get's current location using geolocation
 function getLocation() {
 
@@ -54,7 +46,6 @@ function getLocation() {
     navigator.geolocation.getCurrentPosition(function(somePos) {
       my_lat = somePos.coords.latitude;
       my_lng = somePos.coords.longitude;
-      console.log(contentString);
       renderMap(my_lat, my_lng, contentString);
     });
   } else {
@@ -64,26 +55,21 @@ function getLocation() {
 
 //Renders the map on load from getLocation()
 function renderMap(my_lat, my_lng, contentString){
-  console.log(contentString);
   var me = new google.maps.LatLng(my_lat, my_lng);
   // Update map and go there...        
         // Create a marker
         marker = new google.maps.Marker({
           position: me,
-          //title: "Here I Am!"
-          title: shortest_id, 
+          title: "Paul Roche's Current Location", 
           content: contentString
         });
         marker.setMap(map);
-        console.log("HERE");
         var infowindow = new google.maps.InfoWindow();
-        // Open info window on click of markerg 0.   
+        // Open info window on click 
         google.maps.event.addListener(marker, 'click', function() {
           //infowindow.setContent(marker.title);
-          console.log(contentString);
           infowindow.setContent(contentStringAsString);
           infowindow.open(map, marker);
-
         });
 }
 
@@ -115,29 +101,18 @@ function execute_http_post(){
           the_car_lng = counter.lng;
 
           locations.push([the_car_id, the_car_lat, the_car_lng, i]);
-
           shortest = find_shortest_path(i, counter);
-          
-          console.log(shortest);
           //getLocation();
 
         }
-        //console.log(shortest);
-        console.log(contentString);
         getLocation();
         setMarker(map);
         createPath();
     }
   }
   http.send(params);
-  //getLocation();
 }
 
-/*function myCallBack(){
-  if(xmlhttp.readyState==4 && xml.status==200){
-    console.log(http.responseText);
-  }
-}*/
 //Set MARKERS for all the available cars
 function setMarker(map){
 var i;
@@ -161,20 +136,16 @@ function find_shortest_path(i, counter){
 
   if(dist < short_dist){
     short_dist = dist;
-    console.log(short_dist);
-    console.log(counter._id);
     shortest_id = counter._id;
     pathCoordinates.push({lat: c_lat, lng: c_lng});
     contentString = [shortest_id, c_lat, c_lng];
     contentStringAsString = contentString.join(', '); 
-    console.log(contentString);
   }
 }
 
 //Calculates the distance between point A and point B
 //Param: takes the lat & lng of the current marker
 function compute_distance(x, y){  
-
   var a = new google.maps.LatLng(x, y);
   var b = new google.maps.LatLng(42.3959, -71.1787);
 
@@ -186,15 +157,10 @@ function compute_distance(x, y){
 
 function createPath(){
   pathCoordinates.push({lat: 42.3959, lng: -71.1787});
-  console.log("HERRYA");
-  console.log(pathCoordinates);
-  console.log(pathCoordinates.length)-2;
 
   num_of_path_ele = pathCoordinates.length-3;
   for(var i=0; i<=num_of_path_ele; i++){   
-       console.log("i=" + i);
        pathCoordinates.shift();
-       console.log(pathCoordinates.length)-2;
   }
   console.log(pathCoordinates);
   var travelPath = new google.maps.Polyline({
