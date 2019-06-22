@@ -143,7 +143,7 @@ function find_shortest_path(i, counter){
     short_dist = dist;
     shortest_id = counter._id;
     pathCoordinates.push({lat: c_lat, lng: c_lng});
-    the_content = [shortest_id, c_lat, c_lng];
+    the_content = [shortest_id, short_dist];
     contentAsString = the_content.join(', '); 
   }
 }
