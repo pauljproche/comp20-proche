@@ -1,12 +1,10 @@
 //notuber js file
-
 //declaring map in global scope for setMap to work
 var map;
 var marker;
 var my_lat = -99999;
 var my_lng = -99999;
 //var infowindow = new google.maps.InfoWindow();
-//Default locations of cars
 var locations = [
     ['mXfkjrFw', 42.3453, -71.0464, 1],
     ['nZXB8ZHz', 42.3662, -71.0621, 2],
@@ -29,7 +27,7 @@ function initMap() {
   compute_distance();
 }
 
-
+//Set markers for all the available cars
 function setMarker(map){
 var i;
 var image = {
@@ -57,18 +55,17 @@ function getLocation() {
   }
 }
 
+//Renders the map on load
 function renderMap(){
   var me = new google.maps.LatLng(my_lat, my_lng);
-
-  // Update map and go there...
-        //map.panTo(me);
-        
+  // Update map and go there...        
         // Create a marker
         marker = new google.maps.Marker({
           position: me,
           title: "Here I Am!"
         });
         marker.setMap(map);
+        execute_http_post();
 
         var infowindow = new google.maps.InfoWindow();
         // Open info window on click of marker
@@ -79,6 +76,7 @@ function renderMap(){
           
 }
 
+//Executes the Http POST request
 function execute_http_post(){
   var http = new XMLHttpRequest();
   var url = 'https://hans-moleman.herokuapp.com/rides';
@@ -97,11 +95,11 @@ function execute_http_post(){
   http.send(params);
 }
 
-function compute_distance(){
-  //key a: mXfkjrFw
-  //me as b
+//Calculates the distance between point A and point B
+function compute_distance(){  
   var a = new google.maps.LatLng(42.3453, -71.0464);
   var b = new google.maps.LatLng(42.3959, -71.1787);
+
   console.log(google.maps.geometry.spherical.computeDistanceBetween(a,b));
   alert(google.maps.geometry.spherical.computeDistanceBetween(a,b));
 }
