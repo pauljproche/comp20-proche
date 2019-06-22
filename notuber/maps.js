@@ -11,7 +11,6 @@ var pathCoordinates = [];
 var shortest, shortest_id;
 var dist, short_dist = 100;
 var contentString, contentAsString;
-//var http = new XMLHttpRequest();
 
 function initMap() { 
    map = new google.maps.Map(document.getElementById('map'), {
@@ -20,13 +19,7 @@ function initMap() {
     mapTypeId: google.maps.MapTypeId.ROADMAP
   });
 
-  execute_http_post(my_lat, my_lng); //DONE //2. Then request the JSON data and then parse it (i.e. Saving the lat & lng of each car)
-  //getLocation();       //DONE //1. First get my current location and display marker & infoWindow via renderMap()
-  //renderMap();
-  //compute_distance();  //DONE //4. Finally, Computes distance between me and INSERT_CAR to find shortest path
-  //find_shortest_path();
-
-  //setMarker(map);      //DONE //3. Next, use the JSON data to assign location for cars (i.e. lat, lng)
+  execute_http_post(my_lat, my_lng); 
 }
 //Get's current location using geolocation
 function getLocation() {
@@ -34,8 +27,7 @@ function getLocation() {
     navigator.geolocation.getCurrentPosition(function(somePos) {
       my_lat = somePos.coords.latitude;
       my_lng = somePos.coords.longitude;
-      //console.log("my lat" + my_lat);
-      //console.log("my lng" + my_lng);
+
       renderMap(my_lat, my_lng, contentString);
     });
   } else {
@@ -47,8 +39,7 @@ function getLocation() {
 function renderMap(my_lat, my_lng, contentString){
   var me = new google.maps.LatLng(my_lat, my_lng);
   var image = 'icons8-marker-64.png';
-      //console.log("my lat" + my_lat);
-      //console.log("my lng" + my_lng);
+
   // Update map and go there...        
         // Create a marker
         marker = new google.maps.Marker({
@@ -62,7 +53,6 @@ function renderMap(my_lat, my_lng, contentString){
         var infowindow = new google.maps.InfoWindow();
         // Open info window on click 
         google.maps.event.addListener(marker, 'click', function() {
-          //infowindow.setContent(marker.title);
           infowindow.setContent(contentAsString);
           infowindow.open(map, marker);
         });
@@ -78,15 +68,13 @@ function toggleBounce() {
 
 //Executes the Http POST request
 function execute_http_post(my_lat, my_lng){
-    //console.log("my lat" + my_lat);
-      //console.log("my lng" + my_lng);
+
   var the_lat, the_lng;
   the_lat = String(my_lat);
   the_lng = String(my_lng);
   var the_car_lat, the_car_lng, the_car_id;
   var http = new XMLHttpRequest();
   var url = 'https://hans-moleman.herokuapp.com/rides';
-      //var params = "username=prOuKReR&lat=" + the_lat + "&lng=" + the_lng;
   var params = "username=prOuKReR&lat=10&lng=10";
   var shortest;
 
@@ -95,7 +83,6 @@ function execute_http_post(my_lat, my_lng){
   http.onreadystatechange = function() {
     if(http.readyState == 4 && http.status == 200) {
         //SECTION THAT PARSES RECEIVED JSON DATA
-        //console.log(http.responseText);
         var jsonData = http.responseText; 
         var json_obj = JSON.parse(jsonData);
         //SECTION THAT ASSIGNS LAT & LNG OF EACH CAR (from json data)
@@ -142,7 +129,6 @@ var image = {
       var infowindow = new google.maps.InfoWindow();
         // Open info window on click 
         google.maps.event.addListener(marker, 'click', function() {
-          //infowindow.setContent(marker.title);
           infowindow.setContent(contentAsString);
           infowindow.open(map, marker);
         });
@@ -182,7 +168,6 @@ function createPath(){
   for(var i=0; i<=num_of_path_ele; i++){   
        pathCoordinates.shift();
   }
-  //console.log(pathCoordinates);
   var travelPath = new google.maps.Polyline({
     path: pathCoordinates,
     geodesic: true,
@@ -191,4 +176,3 @@ function createPath(){
   });
   travelPath.setMap(map);                         
 }
-//CHEERIOS
