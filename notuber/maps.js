@@ -5,8 +5,8 @@ var marker;
 var my_lat = -99999;
 var my_lng = -99999;
 var x, y;
-var locations = [];
-var pathCoordinates = [];
+var locations = []; //locations of the cars
+var pathCoordinates = []; 
 
 var shortest, shortest_id;
 var dist, short_dist = 100;
@@ -120,6 +120,8 @@ function execute_http_post(my_lat, my_lng){
 //Set MARKERS for all the available cars
 function setMarker(map){
 var i;
+var s_lat, s_lng;
+var the_content;
 var image = {
   url: 'https://tuftsdev.github.io/WebProgramming/assignments/summer2019/car.png'
 };
@@ -127,8 +129,23 @@ var image = {
       marker = new google.maps.Marker({
         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
         map: map,
-        icon: image
+        icon: image,
+        content: contentAsString
       });
+
+      s_lat = locations[i][1];
+      s_lng = locations[i][2];
+
+      the_content = [s_lat, s_lng];
+      contentAsString = the_content.join(', ');
+
+      var infowindow = new google.maps.InfoWindow();
+        // Open info window on click 
+        google.maps.event.addListener(marker, 'click', function() {
+          //infowindow.setContent(marker.title);
+          infowindow.setContent(contentAsString);
+          infowindow.open(map, marker);
+        });
     }
 
 }
@@ -143,7 +160,7 @@ function find_shortest_path(i, counter){
     short_dist = dist;
     shortest_id = counter._id;
     pathCoordinates.push({lat: c_lat, lng: c_lng});
-    the_content = [shortest_id, short_dist];
+    var the_content = [shortest_id, short_dist];
     contentAsString = the_content.join(', '); 
   }
 }
