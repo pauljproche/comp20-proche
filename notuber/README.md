@@ -4,7 +4,7 @@
 
 2. I worked on this assignment by myself.
 
-3. I spent approximately a five hours on this assignment.
+3. I spent approximately a 6 hours on this assignment.
 
 # notuber
 1. I believe most aspects of my work have been correctly implemented. I was able to determine and mark my location on the map, I was able to make a successful request to the ride-hailing API, and I was able to send my username. However, I struggled sending my coordinates because I couldn't figure out how to have js accept concatanated strings for my params despite following the correct format. However, I was able to mark all the vehicles returned by the API and note the closest marker to my icon. Finally, I connected my marker to the closest vehicle via a polyline. I was unable to access the places API and tried creating a new API key to see if I could access the client-side version of Places, however I got stuck too frequently and gave up at the end.
