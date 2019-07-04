@@ -76,8 +76,8 @@
 					<li>Severity of issue: Low</li>
 					<li>Description of issue: Web Browser XSS Protection is not enabled, or is disabled by the configuration of the 'X-XSS-Protection' HTTP response header on the web server.</li>
 					<li>Proof of vulnerability. screenshots necessary</li>
-					<li>Resolution</li>
-				</ul>Web Browser XSS Protection Not Enabled
+					<li>Resolution: Ensure that the web browser's XSS filter is enabled. </li>
+				</ul>
 
 			<h1>Issues found via Whitebox Method</h1>
 				<ul class="issue_ele">
@@ -99,7 +99,7 @@
 				</ul>
 		</div>
 		<div>
-			<h1>Conclusion</h1>
+			<h1>Conclusion: In the future, I would recommending getting an API key and have the server limit the range of user input via input validation and restrictions on input length. Both of the former examples would require a low cost to implement them. However, I wouldn't recommend completely overhauling the database to a noSQL database because it would also be vulnerable to injections and the cost would be too high.  </h1>
 		</div>
 </body>
 </html>
