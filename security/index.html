@@ -22,7 +22,7 @@
 			<h2>Overview of all the security and privacy issues identified:</h2>
 			<div>All the Issues and Vulnerabilities Found</div>
 			<ul>
-				<li></li>
+				<li>CSP Scanner: Wildcard Directive</li>
 				<li></li>
 				<li></li>
 				<li></li>
@@ -41,31 +41,45 @@
 		<div>
 			<h1>Issues Found</h1>
 				<ul class="issue_ele">
-					<li>Issue</li>
+					<li>Issue 1: CSP Scanner: Wildcard Directive</li>
+
 					<li>Location</li>
-					<li>Severity of issue</li>
-					<li>Description of issue</li>
+
+					<li>Severity of issue: Medium</li>
+
+					<li>Description of issue: The following directives either allow wildcard sources,
+					 are not defined, or are overly broadly defined.</li>
+
 					<li>Proof of vulnerability. screenshots necessary</li>
-					<li>Resolution</li>
+
+					<li>Resolution: Ensure that your web server, application server, load balancer, etc. is properly configured to set the Content-Security-Policy header.</li>
+				</ul>
+
+				<ul class="issue_ele">
+					<li>Issue 2: X-Frame-Options Header Not Set</li>
+
+					<li>Location</li>
+
+					<li>Severity of issue: Medium</li>
+
+					<li>Description of issue: X-Frame-Options header is not included in the HTTP response to protect against 'ClickJacking' attacks.</li>
+
+					<li>Proof of vulnerability. screenshots necessary</li>
+
+					<li>Resolution: Most modern Web browsers support the X-Frame-Options HTTP header. Ensure it's set on all web pages returned by your site (if you expect the page to be framed only by pages on your server (e.g. it's part of a FRAMESET) then you'll want to use SAMEORIGIN, otherwise if you never expect the page to be framed, you should use DENY. ALLOW-FROM allows specific websites to frame the web page in supported web browsers).</li>
 				</ul>
 				<ul class="issue_ele">
-					<li>Issue</li>
+					<li>Issue 3: Absence of Anti-CSRF Tokens</li>
 					<li>Location</li>
-					<li>Severity of issue</li>
-					<li>Description of issue</li>
+					<li>Severity of issue: Low</li>
+					
+					<li>Description of issue: No Anti-CSRF tokens were found in a HTML submission form. A cross-site request forgery is an attack that involves forcing a victim to send an HTTP request to a target destination without their knowledge or intent in order to perform an action as the victim. The underlying cause is application functionality using predictable URL/form actions in a repeatable way. The nature of the attack is that CSRF exploits the trust that a web site has for a user.</li>
+					
 					<li>Proof of vulnerability. screenshots necessary</li>
-					<li>Resolution</li>
+					<li>Resolution: Use a vetted library or framework that does not allow this weakness to occur or provides constructs that make this weakness easier to avoid.</li>
 				</ul>
 				<ul class="issue_ele">
-					<li>Issue</li>
-					<li>Location</li>
-					<li>Severity of issue</li>
-					<li>Description of issue</li>
-					<li>Proof of vulnerability. screenshots necessary</li>
-					<li>Resolution</li>
-				</ul>
-				<ul class="issue_ele">
-					<li>Issue</li>
+					<li>Issue 4: CSP Scanner: Notices</li>
 					<li>Location</li>
 					<li>Severity of issue</li>
 					<li>Description of issue</li>
@@ -73,6 +87,22 @@
 					<li>Resolution</li>
 				</ul>
 
+				<ul class="issue_ele">
+					<li>Issue 5: Cookie Without Secure Flag</li>
+					<li>Location</li>
+					<li>Severity of issue</li>
+					<li>Description of issue</li>
+					<li>Proof of vulnerability. screenshots necessary</li>
+					<li>Resolution</li>
+				</ul>
+				<ul class="issue_ele">
+					<li>Issue 6: Cross-Domain JavaScript Source File Inclusion</li>
+					<li>Location</li>
+					<li>Severity of issue</li>
+					<li>Description of issue</li>
+					<li>Proof of vulnerability. screenshots necessary</li>
+					<li>Resolution</li>
+				</ul>
 		</div>
 		<div>
 			<h1>Conclusion</h1>
