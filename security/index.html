@@ -5,7 +5,7 @@
 <body>
 		<div>
 			<h1>Introduction</h1>
-			<div>I am perform a security assessmenting of a potentially vulnerable system. Specifically, I was hired as a security consultant to resolve privacy and security issues relating to a ride-hailing service. That is, I was hired to see if there were any notable vulnerablities in the source code and the package.json by the company.</div>
+			<div>I am perform a security assessment of a potentially vulnerable system. Specifically, I was hired as a security consultant to resolve privacy and security issues relating to a ride-hailing service. That is, I was hired to see if there were any notable vulnerablities in the source code and the package.json by the company.</div>
 		</div>
 		<div>
 			<h1>Methodology</h1>
@@ -42,7 +42,7 @@
 					<li>Description of issue: The following directives either allow wildcard sources,
 					 are not defined, or are overly broadly defined.</li>
 
-					<li>Proof of vulnerability.<img src="../security/issue1_proof.png" alt="issue 1" width="268" height="400"></li>
+					<li>Proof of vulnerability: <img src="../security/issue1_proof.png" alt="issue 1" width="268" height="400"></li>
 
 					<li>Resolution: Ensure that your web server, application server, load balancer, etc. is properly configured to set the Content-Security-Policy header.</li>
 				</ul>
@@ -56,7 +56,7 @@
 
 					<li>Description of issue: X-Frame-Options header is not included in the HTTP response to protect against 'ClickJacking' attacks.</li>
 
-					<li>Proof of vulnerability.<img src="../security/issue2.png" alt="issue 2" width="268" height="400"></li>
+					<li>Proof of vulnerability: <img src="../security/issue2.png" alt="issue 2" width="268" height="400"></li>
 
 					<li>Resolution: Ensure that the X-Frame-Options HTTP header is set on all web pages returned by your site.</li>
 				</ul>
@@ -67,7 +67,7 @@
 					
 					<li>Description of issue: No Anti-CSRF tokens were found in a HTML submission form. A cross-site request forgery is an attack that involves forcing a victim to send an HTTP request to a target destination without their knowledge or intent in order to perform an action as the victim. Thus,  the lack of such tokens would for instance allow one one-click attacks to occur.</li>
 					
-					<li>Proof of vulnerability.<img src="../security/issue3.png" alt="issue 3" width="268" height="400"></li>
+					<li>Proof of vulnerability: <img src="../security/issue3.png" alt="issue 3" width="268" height="400"></li>
 					<li>Resolution: Use a vetted library or framework that does not allow this weakness to occur or provides constructs that make this weakness easier to avoid.</li>
 				</ul>
 				<ul class="issue_ele">
@@ -75,7 +75,7 @@
 					<li>Location: Missing X-XSS HTTP Response Header</li>
 					<li>Severity of issue: Low</li>
 					<li>Description of issue: Web Browser XSS Protection is not enabled, or is disabled by the configuration of the 'X-XSS-Protection' HTTP response header on the web server.</li>
-					<li>Proof of vulnerability.<img src="../security/issue4.png" alt="issue 4" width="268" height="400"></li>
+					<li>Proof of vulnerability: <img src="../security/issue4.png" alt="issue 4" width="268" height="400"></li>
 					<li>Resolution: Ensure that the web browser's XSS filter is enabled. </li>
 				</ul>
 
@@ -85,7 +85,8 @@
 					<li>Location: POST /rides </li>
 					<li>Severity of issue: High</li>
 					<li>Description of issue: XSS vulnerabilities target scripts embedded in a page that are executed on the client-side, rather than on the server-side. Thus, it can lead to an attacker controlling the victim’s browser or account on the vulnerable web application.</li>
-					<li>Proof of vulnerability. For instance, inserting a &ltscript&gt attribute inside a URL's key (i.e. of the key-value pair) with an alert function triggers the following: <img src="../security/issue5.png" alt="issue 5" width="600" height="200"> </li>
+					<li>Proof of vulnerability: For instance, executing "curl --data "username=&ltscript&gtalert('Hello XSS')&lt/script&gt&lat=50&lng=50" https://hans-moleman.herokuapp.com/rides" on the console triggers the following:
+					<img src="../security/realsolution5.png" alt="issue 5" width="600" height="300"> </li>
 					<li>Resolution: Remove the ability for data to be interpreted as code. </li>
 				</ul>
 
@@ -94,7 +95,7 @@
 					<li>Location: GET /passenger.json</li>
 					<li>Severity of issue: Medium</li>
 					<li>Description of issue: The client is able to inject MongoDB commands that will be executed by the database engine. Thus, in this case, one is able to access all the passengers of the ride-hailing service.</li>
-					<li>Proof of vulnerability. For instance curl https://hans-moleman.herokuapp.com/passenger.json?username[$ne]=random will yield the following: <img src="../security/issue6.png" alt="issue 6" width="600" height="200"></li>
+					<li>Proof of vulnerability: For instance curl https://hans-moleman.herokuapp.com/passenger.json?username[$ne]=random will yield the following: <img src="../security/real_solution6.png" alt="issue 6" width="600" height="200"></li>
 					<li>Resolution: Use data validation to ensure that that the request's parameters are correctly formated.</li>
 				</ul>
 		</div>
