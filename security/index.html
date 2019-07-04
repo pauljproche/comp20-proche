@@ -85,7 +85,7 @@
 					<li>Location: POST /rides </li>
 					<li>Severity of issue: High</li>
 					<li>Description of issue: XSS vulnerabilities target scripts embedded in a page that are executed on the client-side, rather than on the server-side. Thus, it can lead to an attacker controlling the victim’s browser or account on the vulnerable web application.</li>
-					<li>Proof of vulnerability. For instance, inserting a &ltscript&gt attribute inside a URL's key (i.e. of the key-value pair) with an alert function triggers the following: <img src="" alt="issue 5"> </li>
+					<li>Proof of vulnerability. For instance, inserting a &ltscript&gt attribute inside a URL's key (i.e. of the key-value pair) with an alert function triggers the following: <img src="../security/issue5.png" alt="issue 5" width="600" height="200"> </li>
 					<li>Resolution: Remove the ability for data to be interpreted as code. </li>
 				</ul>
 
@@ -94,7 +94,7 @@
 					<li>Location: GET /passenger.json</li>
 					<li>Severity of issue: Medium</li>
 					<li>Description of issue: The client is able to inject MongoDB commands that will be executed by the database engine. Thus, in this case, one is able to access all the passengers of the ride-hailing service.</li>
-					<li>Proof of vulnerability. For instance curl https://hans-moleman.herokuapp.com/passenger.json?username[$ne]=random will yield the following: <img src="" alt="issue 6"></li>
+					<li>Proof of vulnerability. For instance curl https://hans-moleman.herokuapp.com/passenger.json?username[$ne]=random will yield the following: <img src="../security/issue6.png" alt="issue 6" width="600" height="200"></li>
 					<li>Resolution: Use data validation to ensure that that the request's parameters are correctly formated.</li>
 				</ul>
 		</div>
