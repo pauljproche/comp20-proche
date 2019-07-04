@@ -15,19 +15,19 @@
 				<li>Whitebox Approach: Then, I will manually review the source code and document my findings. If I find any large issues, such as source code that is potentially vulnerable to XSS, I will go back and attack it.</li>
 			</li>
 			<h2>Summary:</h2>
-			<div>My methodology for pen testing the system will be to first understand the source code of the ride hailing service, the see if there are any apparent vulnerabilities that I can desern from the code, and final I will use tools such a Burp Suite and curl to locate vulnerabilities. I will loop through this process until I am certain that there are no more serious security and privacy issues with the ride-hailing service.</div>
+			<div>My methodology for pen testing the system will be to first understand the source code of the ride hailing service, the see if there are any apparent vulnerabilities that I can desern from the code, and final I will use tools such the OWASP ZAP tool, curl, and the playing with the URL's browser to locate vulnerabilities. I will loop through this process until I am certain that there are no more serious security and privacy issues with the ride-hailing service.</div>
 		</div>
 		<div>
 			<h1>Abstract of Findings</h1>
 			<h2>Overview of all the security and privacy issues identified:</h2>
 			<div>Types of Issues and Vulnerabilities Found</div>
 			<ul>
-				<li>CSP Scanner: Wildcard Directive</li>
-				<li>X-Frame-Options Header Not Set</li>
-				<li>Absence of Anti-CSRF Tokens</li>
-				<li>Web Browser XSS Protection Not Enabled</li>
-				<li>XSS</li>
-				<li>MongoDB Injection</li>
+				<li>Directives are not defined (i.e. CSP Scanner: Wildcard Directive)</li>
+				<li>Protection against 'Clickjacking' attacks does not exist (i.e. X-Frame-Options Header Not Set)</li>
+				<li>Website is susceptible to hackers forcing the user to send information without their knowledge (i.e.Absence of Anti-CSRF Tokens)</li>
+				<li>The website lacks protection of the users against harmful code sent by hackers(i.e. Web Browser XSS Protection Not Enabled)</li>
+				<li>The Website is vulnerable to targeted code and the hacker can gain control to a victim's browser and account.(i.e. XSS)</li>
+				<li>Code can be inserted such that sensitive information from this company's databases can be stolen or leaked (i.e. NoSQL Injection)</li>
 			</ul>
 		</div>
 		<div>
@@ -40,7 +40,7 @@
 					<li>Severity of issue: Medium</li>
 
 					<li>Description of issue: The following directives either allow wildcard sources,
-					 are not defined, or are overly broadly defined.</li>
+					 are not defined, or are overly broadly defined: script-src, style-src, img-src, connect-src, frame-src, font-src, media-src, object-src, manifest-src, worker-src, prefetch-src.</li>
 
 					<li>Proof of vulnerability: <img src="../security/issue1_proof.png" alt="issue 1" width="268" height="400"></li>
 
@@ -91,7 +91,7 @@
 				</ul>
 
 				<ul class="issue_ele">
-					<li>Issue 2: MongoDB Injection</li>
+					<li>Issue 2: NoSQL Injection</li>
 					<li>Location: GET /passenger.json</li>
 					<li>Severity of issue: Medium</li>
 					<li>Description of issue: The client is able to inject MongoDB commands that will be executed by the database engine. Thus, in this case, one is able to access all the passengers of the ride-hailing service.</li>
